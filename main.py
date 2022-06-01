@@ -1,16 +1,22 @@
-# This is a sample Python script.
-
-# Press Alt+Shift+Enter to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import gym
+from gym_codebending.envs import gregworld, cartpole_pymunk
+from gym_codebending.envs.pygame_utils import colour_constants
+import pygame
+import numpy as np
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+env = gym.make('CartPolePyMunk-v0')
+print(env.observation_space_table)
+#env.render()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+for i in range(5):
+    env.reset()
+    while True:
+        env.human_play()
+        next_obs, reward, done, info = env.step(0)
+
+        env.render()
+
+        if done:
+            break
